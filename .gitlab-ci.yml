@@ -4,14 +4,12 @@ stages:
  - build
  - release
 
-before_script:
- - cd src/Disbot
-
 build:
  stage: build
  before_script:
  - 'dotnet restore'
  script:
+ - cd src/Disbot
  - 'dotnet build'
  only:
  - master
@@ -24,6 +22,7 @@ release:
  services:
  - docker:dind
  before_script:
+ - cd src/Disbot
  - docker version
  - "docker info"
  - "docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY"
