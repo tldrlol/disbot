@@ -4,6 +4,7 @@ stages:
   - build
 
 before_script:
+  -  cd src/Disbot
   - 'dotnet restore'
 
 build:
