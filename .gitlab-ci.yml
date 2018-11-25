@@ -7,9 +7,9 @@ stages:
 build:
  stage: build
  before_script:
+ - cd src/Disbot
  - 'dotnet restore'
  script:
- - cd src/Disbot
  - 'dotnet build'
  only:
  - master
