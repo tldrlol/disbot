@@ -10,6 +10,7 @@ WORKDIR /src/Disbot
 RUN dotnet build Disbot.csproj -c Release -o /app
 
 FROM build AS publish
+WORKDIR /src/Disbot
 RUN dotnet publish Disbot.csproj -c Release -o /app
 
 FROM base AS final
