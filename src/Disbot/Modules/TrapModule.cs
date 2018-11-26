@@ -4,8 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+
 using Discord.Commands;
+
 using JetBrains.Annotations;
+
 using Serilog;
 
 namespace Disbot.Modules
@@ -22,6 +25,10 @@ namespace Disbot.Modules
             ["chuck"] = "https://cdn.instructables.com/FU8/FJQR/FSLF83DD/FU8FJQRFSLF83DD.LARGE.jpg",
             ["trump"] = "https://www.dailydot.com/wp-content/uploads/da3/a4/trumpcard.jpg",
             ["wtf"] = "https://pics.me.me/w-t-f-trap-card-when-a-post-or-statement-is-ridiculous-19249753.png",
+            ["nou"] = "https://i.kym-cdn.com/photos/images/newsfeed/000/063/502/NU.jpg",
+            ["cheese"] = "https://i.kym-cdn.com/photos/images/original/000/063/517/cheese_Trap_card-s333x493-14356-580.jpg",
+            ["mungus"] = "https://i.redd.it/zxa9u3ku4kpz.jpg",
+            ["thot"] = "https://scontent-atl3-1.cdninstagram.com/vp/51a6aaa44a67016b25bdd7ded76de877/5C45591D/t51.2885-15/e35/28154584_407651403009390_4297132354654175232_n.jpg"
         };
 
         [Command("list"), Alias("all"), Summary("Plays a trap card")]
