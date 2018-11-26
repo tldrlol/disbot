@@ -36,7 +36,7 @@ namespace Disbot.Modules
                 {
                     var req = await client.GetStreamAsync(emojiUrl);
 
-                    await Context.Channel.SendFileAsync(req, Path.GetFileName(emojiUrl));
+                    await Context.Channel.SendFileAsync(req, Path.GetFileName(emojiUrl), Context.User.Mention);
 
                     await Context.Message.DeleteAsync();
                 }
