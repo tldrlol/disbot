@@ -13,7 +13,6 @@ namespace Disbot.Modules
     [Group("role")]
     public class RoleModule : ModuleBase
     {
-
         [Command("add"), Description("Adds a role to your user")]
         [UsedImplicitly]
         public Task Add(string roleName)
