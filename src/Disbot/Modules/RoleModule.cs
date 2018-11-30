@@ -13,7 +13,6 @@ namespace Disbot.Modules
     [Group("role")]
     public class RoleModule : ModuleBase
     {
-        private const ulong NSFW_ROLE = 464979997057351700;
 
         [Command("add"), Description("Adds a role to your user")]
         [UsedImplicitly]
@@ -52,7 +51,7 @@ namespace Disbot.Modules
         public async Task Assign(string roleName)
         {
             var guildRole = Context.Guild.Roles
-                .Where(x => x.Id != NSFW_ROLE)
+                .Where(x => x.Id != Constants.NSFW_ROLE)
                 .Where(x => string.Equals(x.Name, roleName, StringComparison.CurrentCultureIgnoreCase))
                 .SingleOrDefault();
 
@@ -95,7 +94,7 @@ namespace Disbot.Modules
             var firstRole = 
                 guildUser
                 .Roles
-                .Where(x => x.Id != NSFW_ROLE)
+                .Where(x => x.Id != Constants.NSFW_ROLE)
                 .FirstOrDefault();
 
             if (firstRole == default)
@@ -166,7 +165,7 @@ namespace Disbot.Modules
                 return;
             }
 
-            if (guildRole.Id == NSFW_ROLE)
+            if (guildRole.Id == Constants.NSFW_ROLE)
             {
                 return;
             }
