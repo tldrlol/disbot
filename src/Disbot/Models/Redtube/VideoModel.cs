@@ -1,7 +1,7 @@
-using Newtonsoft.Json;
 using System;
+using Newtonsoft.Json;
 
-namespace Disbot.Models
+namespace Disbot.Models.Redtube
 {
     public class VideoModel
     {
