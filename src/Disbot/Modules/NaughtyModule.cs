@@ -20,7 +20,7 @@ namespace Disbot.Modules
 
         [Command("naughty"), Alias("porn")]
         [UsedImplicitly]
-        public async Task Naughty(string searchValue)
+        public async Task Naughty([Remainder]string searchValue)
         {
             if (Context.Channel.Id != Constants.NSFW_CHANNEL)
             {
