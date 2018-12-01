@@ -7,7 +7,7 @@ pool:
   vmImage: 'Ubuntu 16.04'
 
 variables:
-  imageName: 'disbot:$(build.buildId)'
+  imageName: 'inzanit/disbot:$(build.buildId)'
 
 steps:
 - script: docker build -f src/Disbot/Dockerfile -t $(imageName) .

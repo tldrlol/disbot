@@ -14,6 +14,7 @@ using Serilog;
 namespace Disbot.Modules
 {
     [Group("Naughty")]
+    [UsedImplicitly]
     public class NaughtyModule : ModuleBase
     {
         private const string REDTUBE_BASE_URL = "https://api.redtube.com/?data=redtube.Videos.searchVideos&output=json&search={0}";
@@ -21,7 +22,7 @@ namespace Disbot.Modules
 
         private static readonly Random Random = new Random();
 
-        [Command, Alias("porn")]
+        [Command("video")]
         [UsedImplicitly]
         public async Task Naughty([Remainder]string searchValue)
         {
@@ -71,6 +72,7 @@ namespace Disbot.Modules
         }
 
         [Command("gif")]
+        [UsedImplicitly]
         public async Task Gif([Remainder] string searchValue)
         {
             if (Context.Channel.Id != Constants.NSFW_CHANNEL)
