@@ -1,18 +1,13 @@
-FROM microsoft/dotnet:2.1-runtime AS base
+FROM microsoft/dotnet:2.1-sdk as build
 WORKDIR /app
-
-FROM microsoft/dotnet:2.1-sdk AS build
-WORKDIR /src
-COPY ["src/Disbot/Disbot.csproj", "Disbot/"]
-RUN dotnet restore "Disbot/Disbot.csproj"
-COPY . .
-WORKDIR "/src/Disbot"
-RUN dotnet build "Disbot.csproj" -c Release -o /app
-
-FROM build AS publish
-RUN dotnet publish "Disbot.csproj" -c Release -o /app -r linux-x64
-
-FROM base AS final
+ 
+COPY src/Disbot/Disbot.csproj ./
+RUN dotnet restore
+ 
+COPY . ./
+RUN dotnet publish -c Release -o out -r linux-x64
+ 
+FROM microsoft/dotnet:2.1-runtime
 WORKDIR /app
-COPY --from=publish /app .
+COPY --from=build /app/out .
 ENTRYPOINT ["dotnet", "Disbot.dll"]

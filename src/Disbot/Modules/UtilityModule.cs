@@ -1,7 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using Disbot.Helpers;
 using Discord.Commands;
 using JetBrains.Annotations;
+using Serilog;
 
 namespace Disbot.Modules
 {
@@ -9,13 +12,22 @@ namespace Disbot.Modules
     [UsedImplicitly]
     public class UtilityModule : ModuleBase
     {
-        [Command("roles")]
+        [Command("forcerole")]
         [UsedImplicitly]
-        public Task GetRoles()
+        public async Task ForceRole()
         {
-            var roles = Context.Guild.Roles.Select(x => $"{x.Id} {x.Name}");
+            try
+            {
+                var botInGuild = await Context.Guild.GetUserAsync(Context.Client.CurrentUser.Id);
 
-            return ReplyAsync(string.Join(", ", roles));
+                var nsfwRole = Context.Guild.GetRole(Constants.NSFW_ROLE);
+
+                await botInGuild.AddRoleAsync(nsfwRole);
+            }
+            catch (Exception e)
+            {
+                Log.Error(e, "Failed forcing 18 role");
+            }
         }
     }
 }
