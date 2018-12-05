@@ -24,12 +24,12 @@ namespace Disbot.Modules
 
         [Command("video")]
         [UsedImplicitly]
-        public async Task Naughty([Remainder]string searchValue)
+        public async Task Naughty([Remainder] string searchValue)
         {
             if (Context.Channel.Id != Constants.NSFW_CHANNEL)
             {
                 Log.Information("User {userName} attempted to run naughty command in the wrong channel", Context.User.Mention);
-                await ReplyAsync("Naughty Boy! That's the wrong channel");                 
+                await ReplyAsync("Naughty Boy! That's the wrong channel");
                 return;
             }
 
@@ -44,7 +44,7 @@ namespace Disbot.Modules
 
             try
             {
-                using(var client = new HttpClient())
+                using (var client = new HttpClient())
                 {
                     var response = await client.GetAsync(string.Format(REDTUBE_BASE_URL, searchValue));
 
@@ -101,15 +101,15 @@ namespace Disbot.Modules
 
                     var deserialized = JsonConvert.DeserializeObject<RedditModel>(content);
 
-                    if (deserialized == null || deserialized.Data.Children.Length <= 0)
+                    if (deserialized == null || deserialized.Data.Posts.Length <= 0)
                     {
                         await ReplyAsync($"Couldn't find anything for {searchValue}");
                         return;
                     }
 
-                    var randomIndex = Random.Next(0, deserialized.Data.Children.Length - 1);
+                    var randomIndex = Random.Next(0, deserialized.Data.Posts.Length - 1);
 
-                    var videos = deserialized.Data.Children[randomIndex];
+                    var videos = deserialized.Data.Posts[randomIndex];
 
                     await ReplyAsync(videos.Data.Url.ToString());
                 }
