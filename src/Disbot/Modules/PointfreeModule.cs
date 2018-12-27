@@ -17,7 +17,7 @@ namespace Disbot.Modules
         public async Task Pointfree([Remainder] string code)
         {
             // make it work with code blocks, quoted strings
-            code = new[] { '"', '`' }.Aggregate(code, (s, c) => s.Trim(c));
+            code = code.Trim('"', '`');
 
             using (var httpClient = new HttpClient())
             {
