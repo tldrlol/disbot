@@ -23,7 +23,7 @@ namespace Disbot.Modules
             {
                 var content = await httpClient.GetStringAsync($"http://pointfree.io/snippet?code={code}");
                 var json = JsonConvert.DeserializeObject<JObject>(content);
-                await ReplyAsync($"`{json["code"]}`");
+                await ReplyAsync($"```haskell\n{json["code"]}```");
             }
         }
     }
